@@ -4,7 +4,7 @@
     {
       "label": "Run Server",
       "type": "shell",
-      "command": "bash inventory/inventory.sh && cd backend && uvicorn main:app --reload",
+      "command": "cd inventory && bash inventory.sh && cd ../backend && pipenv run dev",
       "presentation": {
         "reveal": "always",
         "panel": "new",
