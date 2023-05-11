@@ -1,0 +1,25 @@
+@use 'sass:math';
+@import 'colors';
+
+$containerSize: 1420;
+$vwMobile: 375;
+$vwDesktop: $containerSize;
+$breakDesktop: psc($containerSize);
+$breakMobile: 700px;
+
+$fontFamily: 'Inter', sans-serif;
+
+$animationDuration: 0.3s;
+$animationDurationFast: 0.15s;
+
+@function psc($px) {
+	@return $px * 1px;
+}
+
+@function dsc($px) {
+	@return math.div(round(math.div($px * 10 , $vwDesktop) * 100vw),  10);
+}
+
+@function msc($px) {
+	@return math.div(round(math.div($px * 10, $vwMobile) * 100vw), 10);
+}

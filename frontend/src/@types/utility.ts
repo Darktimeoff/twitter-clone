@@ -1,0 +1,1 @@
+type anyFunc = (...args: any[]) => any;
