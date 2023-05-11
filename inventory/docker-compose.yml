@@ -1,23 +1,18 @@
 version: "3.9"
 
 services:
-  db:
-    ports:
-      - 5433:5432
+   mongo:
+    container_name: twitter-db
+    image: mongo:6.0.5
     restart: always
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    container_name: twitter-db
-    image: postgres:latest
+      - MONGO_INITBD_DATABASE=twitter_local
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
     volumes:
-      - v-twitter-db:/var/lib/postgresql/data
-    healthcheck:
-      test: pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      - v-twitter-db:/data/db
+    ports:
+      - "27165:27017"
 
 
 volumes:

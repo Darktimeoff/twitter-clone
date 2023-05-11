@@ -6,11 +6,9 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
-sqlalchemy = "*"
 python-dotenv = "*"
-asyncpg = "*"
-typer = "*"
-alembic = "*"
+odmantic = "*"
+asyncio = "*"
 
 [dev-packages]
 

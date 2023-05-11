@@ -1,22 +1,22 @@
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.ext.asyncio import create_async_engine
-from sqlalchemy.orm import sessionmaker
+from odmantic import AIOEngine
+from motor.motor_asyncio import AsyncIOMotorClient
+from bson.codec_options import TypeCodec, TypeRegistry
 from .main import config
+from decimal import Decimal
+from odmantic.bson import Decimal128
 
-engine = create_async_engine(config.DATABASE_URL, echo=True)
+class DecimalCodec(TypeCodec):
+    python_type = Decimal
+    bson_type = Decimal128
 
-Base = declarative_base()
+    def transform_python(self, value):
+        return Decimal128(value)
 
-SessionLocal = async_session = sessionmaker(
-    engine, class_=AsyncSession, expire_on_commit=False
-)
+    def transform_bson(self, value):
+        return value.to_decimal()
 
-async def get_db():
-    async with async_session() as session:
-        yield session
- 
-
-async def init_models():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+decimal_codec = DecimalCodec()    
+type_registry = TypeRegistry([decimal_codec])
+    
+client = AsyncIOMotorClient(config.MONGODB_URL, type_registry=type_registry)
+db = AIOEngine(client=client, database=config.MONGODB_DBNAME)

@@ -1,2 +1,5 @@
-from src.config import Base
-from sqlalchemy import  Column, Integer, String
+from odmantic import Model
+
+class Player(Model):
+    name: str
+    game: str

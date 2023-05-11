@@ -8,13 +8,14 @@ from dataclasses import dataclass
 
 class Environment(str, enum.Enum):
     PROD = 'production'
-    TEST = 'testing'
+    TEST = 'local'
     DEV = 'development'
 
 @dataclass
 class Config:
     ENV: Environment
-    DATABASE_URL: str
+    MONGODB_URL: str
+    MONGODB_DBNAME: str
 
     @classmethod
     def from_dict(cls, env):
