@@ -27,19 +27,3 @@ body{
     min-height: 100vh;
     height: 100%;
 }
-
-.custom-scroll::-webkit-scrollbar {
-    width: psc(14);
-}
-   
-.custom-scroll::-webkit-scrollbar-track {
-    background: rgba(169, 169, 169, 0.5);
-    border-radius: psc($borderR);
-}
-
-.custom-scroll::-webkit-scrollbar-thumb {
-    background-color: #808080;
-    border-radius: psc($borderR);
-    border: psc(3) solid transparent;
-    background-clip: content-box;
-}

@@ -20,6 +20,22 @@ export default defineNuxtConfig({
     "@/assets/style/main.scss",
     // "@/assets/icons_font/accomplishrs-icons.css",
   ],
+  modules: [
+    "@pinia/nuxt",
+    "@invictus.codes/nuxt-vuetify"
+  ],
+  vuetify: {
+    vuetifyOptions: {
+      // @TODO: list all vuetify options
+    },
+    moduleOptions: {
+      /* nuxt-vuetify module options */
+      treeshaking: true,
+      useIconCDN: true,
+      styles: true,
+      autoImport: true,
+    }
+  },
   imports: {
     dirs: ["stores", "@types", "api"]
   },
