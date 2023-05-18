@@ -2,6 +2,9 @@
 import path from "path";
 
 export default defineNuxtConfig({
+  routeRules: {
+    '/': {prerender: true}
+  },
   devtools: {
     enabled: true
   },
@@ -22,8 +25,18 @@ export default defineNuxtConfig({
   ],
   modules: [
     "@pinia/nuxt",
-    "@invictus.codes/nuxt-vuetify"
+    "@invictus.codes/nuxt-vuetify",
+    "@nuxtjs/google-fonts",
+    '@vueuse/nuxt'
   ],
+  googleFonts: {
+    families: {
+      Roboto: {
+        wght: [400, 500, 700]
+      }
+    },
+    display: 'swap'
+  },
   vuetify: {
     vuetifyOptions: {
       // @TODO: list all vuetify options
@@ -66,5 +79,8 @@ export default defineNuxtConfig({
         { hid: "description", name: "description", content: "" },
       ],
     }
+  },
+  experimental: {
+    typedPages: true
   }
 })

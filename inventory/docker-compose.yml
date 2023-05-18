@@ -12,7 +12,7 @@ services:
     volumes:
       - v-twitter-db:/data/db
     ports:
-      - "27165:27017"
+      - "27164:27017"
 
 
 volumes:
